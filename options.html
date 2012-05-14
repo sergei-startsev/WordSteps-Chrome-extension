@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+    <link rel="stylesheet" type="text/css" href="../css/wsLoginWindow.css" />
+    <title>WordSteps - Settings</title>
+    <script type="text/javascript" src="/js/jquery_1.5.min.js"></script>
+    <script type="text/javascript" src="js/StringFormat.js"></script>
+    <script type="text/javascript" src="/js/wsPreferencesManager.js"></script>
+    <script type="text/javascript" src="/js/wsAPI.js"></script>
+    <script type="text/javascript" src="/js/wsModels.js"></script>
+    <script type="text/javascript" src="/js/wsPronunciationManager.js"></script>
+    <script type="text/javascript" src="/js/wsOverlay.js"></script>
+    <script type="text/javascript" src="/js/wsLoginWindow.js"></script>
+</head>
+  <body>
+    <div id="conteiner">
+      <div class="top">
+        <div class="logo" id="logo">
+          WordSteps
+        </div>
+        <span class="create_accaunt" id="create-account">Create an account</span>
+      </div>
+      <div class="title">
+        <h1>Sign in to WordSteps</h1>
+      </div>
+      <div class="mainform">
+        <span>Email</span><input id="email" maxlength="32" type="text" name="email" class="email"/>
+        <div style="clear: both"></div>
+        <span>Password</span><input id="password" maxlength="32" type="password" name="pass" class="pass"/>
+        <div style="clear: both"></div>
+        <input type="checkbox" checked="checked" id="remember" name="remember" class="rememb"/><text class="checkbox_text"> Remember me</text>
+        <input type="button" id="signin" name="signin" value="Sign in" class="sign_button" />              
+      </div>
+	  <div style="clear: both"></div>
+	  <div id="errorContainer">
+		<center><span id="error"></span></center>
+	  </div>
+    </div>
+	<div id="busyIndicator">
+		<center>
+            <div class="loader-wrapper">
+                <img src="../images/new-loader.gif" width="128" height="128"/>
+            </div>
+        </center>
+	</div>
+
+    <!-- Params: 0 - extension id, 1 - sound source lang, 2 - sound phrase. -->
+    <script type="text/template" id="wsTranslationPopup">
+        <div class="main_popup">        
+            <div class="popup_top">   
+            <div class="sound">
+                <img src="chrome-extension://{0}/images/sound.png" width="12" height="10" />
+            </div>
+            <p><span class="phrase" />. Click translation to save:</p>
+            <div class="popup_close">
+                <img src="chrome-extension://{0}/images/close.gif" width="8" height="8"/>
+            </div>
+            </div>
+            <div class="popup_center">
+            <ul class="translate_container" />  
+            </div>
+            <input type="text" class="popup_textbox popup_textbox_empty" value="Or specify your translation and press enter" />
+        </div>
+         
+        <div class="main_popup_error not_selected_dict_error">
+            <center>
+	            <p>You must select a dictionary.</p>	  
+	            <span class="open_window_link">Open main window.</span>
+	        </center>
+        </div>
+
+        <div class="main_popup_error translate_service_disabled_error">
+            <center>
+	        <p>Translation service is not available.</p>	  
+	        </center>
+        </div>
+        
+        <div class="main_popup_load">
+            <div class="progress"><img src="chrome-extension://{0}/images/loader.gif" width="220" height="19"/></div>
+        </div>
+    </script>
+
+    <!-- Params: 0 - variant. -->
+    <script type="text/template" id="translationVariant">
+        <li class="translateVariant"><span>{0}</span>
+    </script>
+
+    <div style="display:none;">
+        <canvas id="stateButtonCanvas" width="19" height="19"></canvas>
+        <audio id="wsPronunciationPlayer"></audio>
+        <canvas id="stateButtonCanvas" width="19" height="19"></canvas>
+        <img id="stateActiveImg" src="/images/stateActive.png" width="16" height="16" />
+        <img id="stateDisabledImg" src="/images/stateDisabled.png" width="16" height="16" />
+        <img id="stateLoggedOutImg" src="/images/stateLoggedOut.png" width="16" height="16" />
+    </div>
+  </body>
+</html>

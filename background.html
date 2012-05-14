@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="js/jquery_1.5.min.js"></script>
+  <script type="text/javascript" src="js/StringFormat.js"></script>
+  <script type="text/javascript" src="js/wsPreferencesManager.js"></script>
+  <script type="text/javascript" src="js/wsAPI.js"></script>
+  <script type="text/javascript" src="js/wsModels.js"></script>
+  <script type="text/javascript" src="js/wsPronunciationManager.js"></script>
+  <script type="text/javascript" src="js/wsOverlay.js"></script>
+  <script type="text/javascript" src="js/wsBackground.js"></script>
+</head>
+<body>
+  <!-- Params: 0 - extension id, 1 - sound source lang, 2 - sound phrase. -->
+  <script type="text/template" id="wsTranslationPopup">
+    <div class="main_popup">        
+      <div class="popup_top">   
+        <div class="sound">
+          <img src="chrome-extension://{0}/images/sound.png" width="12" height="10" />
+        </div>
+        <p><span class="phrase" />. Click translation to save:</p>
+        <div class="popup_close">
+          <img src="chrome-extension://{0}/images/close.gif" width="8" height="8"/>
+        </div>
+      </div>
+      <div class="popup_center">
+        <ul class="translate_container" />  
+      </div>
+      <input type="text" class="popup_textbox popup_textbox_empty" value="Or specify your translation and press enter" />
+    </div>
+         
+    <div class="main_popup_error not_selected_dict_error">
+      <center>
+	     <p>You must select a dictionary.</p>	  
+	     <span class="open_window_link">Open main window.</span>
+	  </center>
+    </div>
+
+    <div class="main_popup_error translate_service_disabled_error">
+      <center>
+	    <p>Translation service is not available.</p>	  
+	  </center>
+    </div>
+        
+    <div class="main_popup_load">
+      <div class="progress"><img src="chrome-extension://{0}/images/loader.gif" width="220" height="19"/></div>
+    </div>
+  </script>
+
+  <!-- Params: 0 - variant. -->
+  <script type="text/template" id="translationVariant">
+    <li class="translateVariant"><span>{0}</span>
+  </script>
+
+  <audio id="wsPronunciationPlayer"></audio>
+  <canvas id="stateButtonCanvas" width="19" height="19"></canvas>
+  <img id="stateActiveImg" src="/images/stateActive.png" width="16" height="16" />
+  <img id="stateDisabledImg" src="/images/stateDisabled.png" width="16" height="16" />
+  <img id="stateLoggedOutImg" src="/images/stateLoggedOut.png" width="16" height="16" />
+</body>
+</html>

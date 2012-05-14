@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+    <link rel="stylesheet" type="text/css" href="../css/wsLoginWindow.css" />
+    <title></title>
+    <script type="text/javascript" src="../js/jquery_1.5.min.js"></script>
+    <script type="text/javascript" src="../js/wsLoginWindow.js"></script>
+  </head>
+  <body>
+    <div id="conteiner">
+      <div class="top">
+        <div class="logo" onclick="wsLoginWindow.wordStepsLinkClick();">
+          WordSteps.com
+        </div>
+        <span class="create_accaunt" onclick="wsLoginWindow.createNewAccount();">Create an accaunt</span>
+      </div>
+      <div class="title">
+        <h1>Sign in to WordSteps</h1>
+      </div>
+      <div class="mainform">
+        <span>Email</span><input id="email" onkeypress="wsLoginWindow.enterEvent(event);" maxlength="32" type="text" name="email" class="email"/>
+        <div style="clear: both"></div>
+        <span>Password</span><input id="password" onkeypress="wsLoginWindow.enterEvent(event);" maxlength="32" type="password" name="pass" class="pass"/>
+        <div style="clear: both"></div>
+        <input type="checkbox" checked="checked" id="remember" name="remember" class="rememb"/><text class="checkbox_text" onclick="document.getElementById('remember').checked = !document.getElementById('remember').checked"> Remember me</text>
+        <input type="button" onclick="wsLoginWindow.login();" name="signin" value="Sign in" class="sign_button" />              
+      </div>
+	  <div style="clear: both"></div>
+	  <div id="errorContainer">
+		<center><span id="error"></span></center>
+	  </div>
+    </div>
+	<div id="busyIndicator">
+		<center><img src="../images/loader.gif" width="220" height="19"/></center>
+	</div>
+  </body>
+</html>
