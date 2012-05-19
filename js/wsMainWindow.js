@@ -4,53 +4,55 @@
 /// <reference path="/wsModels.js">
 /// <reference path="/wsPronunciationManager.js">
 
+var bg = chrome.extension.getBackgroundPage();
+
 var wsMainWindow = {
     isExistsDictionaries: false,
-
+    
     onLoad: function () {
-        if (opener == null) {
+        if (bg == null) {
             window.close();
             return;
         }
 
-        $('#login').html(opener.wsUserManager.user.login);
+        $('#login').html(bg.wsUserManager.user.login);
 
-        opener.wsEventManager.subscript(opener.wsPluginStateManager.isBusyChanged, this.onIsBusyChanged);
-        opener.wsEventManager.subscript(opener.wsPluginStateManager.stateChanged, this.onPluginStateChanged);
-        opener.wsEventManager.subscript(opener.wsLanguageRepository.languagesCollectionChanged, this.onLanguagesCollectionChanged);
-        opener.wsEventManager.subscript(opener.wsLanguagePair.sourceLanguageChanged, this.onSourceLanguageChanged);
-        opener.wsEventManager.subscript(opener.wsLanguagePair.targetLanguageChanged, this.onTargetLanguageChanged);
-        opener.wsEventManager.subscript(opener.wsDictionaryRepository.dictionariesCollectionChanged, this.onDictionaryCollectionChanged);
-        opener.wsEventManager.subscript(opener.wsDictionaryRepository.currentDictionaryChanged, this.onCurrentDictionaryChanged);
-        opener.wsEventManager.subscript(opener.wsPhraseRepository.phrasesCollectionChanged, this.onPhrasesCollectionChanged);
+        bg.wsEventManager.subscript(bg.wsPluginStateManager.isBusyChanged, this.onIsBusyChanged);
+        bg.wsEventManager.subscript(bg.wsPluginStateManager.stateChanged, this.onPluginStateChanged);
+        bg.wsEventManager.subscript(bg.wsLanguageRepository.languagesCollectionChanged, this.onLanguagesCollectionChanged);
+        bg.wsEventManager.subscript(bg.wsLanguagePair.sourceLanguageChanged, this.onSourceLanguageChanged);
+        bg.wsEventManager.subscript(bg.wsLanguagePair.targetLanguageChanged, this.onTargetLanguageChanged);
+        bg.wsEventManager.subscript(bg.wsDictionaryRepository.dictionariesCollectionChanged, this.onDictionaryCollectionChanged);
+        bg.wsEventManager.subscript(bg.wsDictionaryRepository.currentDictionaryChanged, this.onCurrentDictionaryChanged);
+        bg.wsEventManager.subscript(bg.wsPhraseRepository.phrasesCollectionChanged, this.onPhrasesCollectionChanged);
 
-        this.onIsBusyChanged(opener.wsPluginStateManager.getIsBusy());
-        this.onPluginStateChanged(opener.wsPluginStateManager.getState());
-        this.onLanguagesCollectionChanged(opener.wsCollectionChangedEnum.reset, 0);
-        this.onSourceLanguageChanged(opener.wsLanguagePair.getSourceLanguage());
-        this.onTargetLanguageChanged(opener.wsLanguagePair.getTargetLanguage());
-        this.onDictionaryCollectionChanged(opener.wsCollectionChangedEnum.reset, 0);
-        this.onCurrentDictionaryChanged(opener.wsDictionaryRepository.getCurrentDictionary());
-        this.onPhrasesCollectionChanged(opener.wsCollectionChangedEnum.reset, 0);
+        this.onIsBusyChanged(bg.wsPluginStateManager.getIsBusy());
+        this.onPluginStateChanged(bg.wsPluginStateManager.getState());
+        this.onLanguagesCollectionChanged(bg.wsCollectionChangedEnum.reset, 0);
+        this.onSourceLanguageChanged(bg.wsLanguagePair.getSourceLanguage());
+        this.onTargetLanguageChanged(bg.wsLanguagePair.getTargetLanguage());
+        this.onDictionaryCollectionChanged(bg.wsCollectionChangedEnum.reset, 0);
+        this.onCurrentDictionaryChanged(bg.wsDictionaryRepository.getCurrentDictionary());
+        this.onPhrasesCollectionChanged(bg.wsCollectionChangedEnum.reset, 0);
 
-        opener.wsDictionaryRepository.resolve(null);
-        opener.wsPhraseRepository.resolve(null);
+        bg.wsDictionaryRepository.resolve(null);
+        bg.wsPhraseRepository.resolve(null);
     },
     onUnload: function () {
-        opener.wsEventManager.unscript(opener.wsPluginStateManager.isBusyChanged, this.onIsBusyChanged);
-        opener.wsEventManager.unscript(opener.wsPluginStateManager.stateChanged, this.onPluginStateChanged);
-        opener.wsEventManager.unscript(opener.wsLanguageRepository.languagesCollectionChanged, this.onLanguagesCollectionChanged);
-        opener.wsEventManager.unscript(opener.wsLanguagePair.sourceLanguageChanged, this.onSourceLanguageChanged);
-        opener.wsEventManager.unscript(opener.wsLanguagePair.targetLanguageChanged, this.onTargetLanguageChanged);
-        opener.wsEventManager.unscript(opener.wsDictionaryRepository.dictionariesCollectionChanged, this.onDictionaryCollectionChanged);
-        opener.wsEventManager.unscript(opener.wsDictionaryRepository.currentDictionaryChanged, this.onCurrentDictionaryChanged);
-        opener.wsEventManager.unscript(opener.wsPhraseRepository.phrasesCollectionChanged, this.onPhrasesCollectionChanged);
+        bg.wsEventManager.unscript(bg.wsPluginStateManager.isBusyChanged, this.onIsBusyChanged);
+        bg.wsEventManager.unscript(bg.wsPluginStateManager.stateChanged, this.onPluginStateChanged);
+        bg.wsEventManager.unscript(bg.wsLanguageRepository.languagesCollectionChanged, this.onLanguagesCollectionChanged);
+        bg.wsEventManager.unscript(bg.wsLanguagePair.sourceLanguageChanged, this.onSourceLanguageChanged);
+        bg.wsEventManager.unscript(bg.wsLanguagePair.targetLanguageChanged, this.onTargetLanguageChanged);
+        bg.wsEventManager.unscript(bg.wsDictionaryRepository.dictionariesCollectionChanged, this.onDictionaryCollectionChanged);
+        bg.wsEventManager.unscript(bg.wsDictionaryRepository.currentDictionaryChanged, this.onCurrentDictionaryChanged);
+        bg.wsEventManager.unscript(bg.wsPhraseRepository.phrasesCollectionChanged, this.onPhrasesCollectionChanged);
     },
     onLanguagesCollectionChanged: function (action, langCode) {
         switch (action) {
-            case opener.wsCollectionChangedEnum.reset:
+            case bg.wsCollectionChangedEnum.reset:
                 {
-                    var languages = opener.wsLanguageRepository.getLanguages();
+                    var languages = bg.wsLanguageRepository.getLanguages();
 
                     var template = this.getTemplate('langSelectorItemTemplate');
                     var sourceHtml = "", targetHtml = "";
@@ -80,10 +82,10 @@ var wsMainWindow = {
     },
     onPhrasesCollectionChanged: function (action, phraseId) {
         switch (action) {
-            case opener.wsCollectionChangedEnum.reset:
+            case bg.wsCollectionChangedEnum.reset:
                 {
                     // TODO: fill phrases tab instead of '#phrases .phrasesContent'
-                    var phrases = opener.wsPhraseRepository.getPhrases();
+                    var phrases = bg.wsPhraseRepository.getPhrases();
 
                     var transEditorPhraseId = null, transEditorValue = null;
                     if ($('#translationEditor') != null) {
@@ -103,21 +105,21 @@ var wsMainWindow = {
                         $('#translationEditor').val(transEditorValue);
                     }
                 } break;
-            case opener.wsCollectionChangedEnum.itemAdded:
+            case bg.wsCollectionChangedEnum.itemAdded:
                 {
                     // TODO: fill phrases tab instead of '#phrases .phrasesContent'
-                    var phrase = opener.wsPhraseRepository.getPhrase(phraseId);
+                    var phrase = bg.wsPhraseRepository.getPhrase(phraseId);
 
                     var html = $('#phrases .phrasesContent').html() + wsMainWindow.createPhraseHtml(phrase);
                     $('#phrases .phrasesContent').html(html);
                 } break;
-            case opener.wsCollectionChangedEnum.itemRemoved:
+            case bg.wsCollectionChangedEnum.itemRemoved:
                 {
                     $('#phrase_' + phraseId).remove();
                 } break;
-            case opener.wsCollectionChangedEnum.itemUpdated:
+            case bg.wsCollectionChangedEnum.itemUpdated:
                 {
-                    var phrase = opener.wsPhraseRepository.getPhrase(phraseId);
+                    var phrase = bg.wsPhraseRepository.getPhrase(phraseId);
 
                     var html = wsMainWindow.createPhraseInnerHtml(phrase);
                     $('#phrase_' + phraseId).html(html);
@@ -126,9 +128,9 @@ var wsMainWindow = {
     },
     onDictionaryCollectionChanged: function (action, dictId) {
         switch (action) {
-            case opener.wsCollectionChangedEnum.reset:
+            case bg.wsCollectionChangedEnum.reset:
                 {
-                    var dictionaries = opener.wsDictionaryRepository.getDictionaries();
+                    var dictionaries = bg.wsDictionaryRepository.getDictionaries();
 
                     if (dictionaries.length > 0) {
                         var template = wsMainWindow.getTemplate('dictionarySelectorItemTemplate');
@@ -139,7 +141,7 @@ var wsMainWindow = {
                         }
                         $('#dictionarySelectorList').html(html);
 
-                        var currentDict = opener.wsDictionaryRepository.getCurrentDictionary();
+                        var currentDict = bg.wsDictionaryRepository.getCurrentDictionary();
                         if (currentDict != null) {
                             $('#dictionarySelectorItem_' + currentDict.id).css('display', 'none');
                         }
@@ -150,14 +152,14 @@ var wsMainWindow = {
                         wsMainWindow.isExistsDictionaries = false;
                     }
                 } break;
-            case opener.wsCollectionChangedEnum.itemAdded:
+            case bg.wsCollectionChangedEnum.itemAdded:
                 {
                     if (!wsMainWindow.isExistsDictionaries) {
                         $('#dictionarySelectorList').html('');
                         wsMainWindow.isExistsDictionaries = true;
                     }
 
-                    var dict = opener.wsDictionaryRepository.getDictionary(dictId);
+                    var dict = bg.wsDictionaryRepository.getDictionary(dictId);
                     var html = String.Format(wsMainWindow.getTemplate('dictionarySelectorItemTemplate'), dict.id, dict.name);
                     $('#dictionarySelectorList').html($('#dictionarySelectorList').html() + html);
                 } break;
@@ -190,16 +192,16 @@ var wsMainWindow = {
     onPluginStateChanged: function (newState) {
         $('.pluginStateSelectorItem').css('display', 'block');
         switch (newState) {
-            case opener.wsPluginStateEnum.ACTIVE:
+            case bg.wsPluginStateEnum.ACTIVE:
                 {
                     $('#pluginStateSelectorItem_ACTIVE').css('display', 'none');
                     document.getElementById('pluginState').className = 'pluginStateEnable';
                 } break;
-            case opener.wsPluginStateEnum.LOGGED_OUT:
+            case bg.wsPluginStateEnum.LOGGED_OUT:
                 {
                     window.close();
                 } break;
-            case opener.wsPluginStateEnum.DISABLED:
+            case bg.wsPluginStateEnum.DISABLED:
                 {
                     $('#pluginStateSelectorItem_DISABLED').css('display', 'none');
                     document.getElementById('pluginState').className = 'pluginStateDisable';
@@ -208,7 +210,7 @@ var wsMainWindow = {
         wsMainWindow.closeSelectors();
     },
     openTranslationEditor: function (phraseId) {
-        var phrase = opener.wsPhraseRepository.getPhrase(phraseId);
+        var phrase = bg.wsPhraseRepository.getPhrase(phraseId);
         if (phrase == null) return;
 
         var editorTemplate = this.getTemplate('translationEditorTemplate');
@@ -225,7 +227,7 @@ var wsMainWindow = {
         });
     },
     onTranslationEditorUnfocused: function (phraseId) {
-        var phrase = opener.wsPhraseRepository.getPhrase(phraseId);
+        var phrase = bg.wsPhraseRepository.getPhrase(phraseId);
         if (phrase == null) return;
 
         var translation = $('#translationEditor').val().trim();
@@ -239,30 +241,30 @@ var wsMainWindow = {
 
         wsMainWindow.onPhraseMouseOut(phraseId);
 
-        opener.wsPluginStateManager.setIsBusy(true);
-        opener.wsPhraseRepository.updatePhrase(phraseId, function (response) {
+        bg.wsPluginStateManager.setIsBusy(true);
+        bg.wsPhraseRepository.updatePhrase(phraseId, function (response) {
             var error = response.error;
 
             if (error) {
                 // TODO: display errors
             }
 
-            opener.wsPluginStateManager.setIsBusy(false);
+            bg.wsPluginStateManager.setIsBusy(false);
         });
     },
     setPluginState: function (newState) {
         switch (newState) {
-            case opener.wsPluginStateEnum.ACTIVE:
+            case bg.wsPluginStateEnum.ACTIVE:
                 {
-                    opener.wsPluginStateManager.setState(opener.wsPluginStateEnum.ACTIVE);
+                    bg.wsPluginStateManager.setState(bg.wsPluginStateEnum.ACTIVE);
                 } break;
-            case opener.wsPluginStateEnum.LOGGED_OUT:
+            case bg.wsPluginStateEnum.LOGGED_OUT:
                 {
-                    opener.wsUserManager.signOut();
+                    bg.wsUserManager.signOut();
                 } break;
-            case opener.wsPluginStateEnum.DISABLED:
+            case bg.wsPluginStateEnum.DISABLED:
                 {
-                    opener.wsPluginStateManager.setState(opener.wsPluginStateEnum.DISABLED);
+                    bg.wsPluginStateManager.setState(bg.wsPluginStateEnum.DISABLED);
                 } break;
         }
     },
@@ -274,10 +276,10 @@ var wsMainWindow = {
         $('#tabHeader_' + tabName).addClass('activli');
     },
     selectDictionary: function (dictId) {
-        opener.wsDictionaryRepository.setCurrentDictionaryUsingId(dictId);
-        opener.wsPluginStateManager.setIsBusy(true);
-        opener.wsPhraseRepository.resolve(function (response) {
-            opener.wsPluginStateManager.setIsBusy(false);
+        bg.wsDictionaryRepository.setCurrentDictionaryUsingId(dictId);
+        bg.wsPluginStateManager.setIsBusy(true);
+        bg.wsPhraseRepository.resolve(function (response) {
+            bg.wsPluginStateManager.setIsBusy(false);
         });
 
         this.closeSelectors();
@@ -296,29 +298,29 @@ var wsMainWindow = {
         }
     },
     selectSourceLang: function (langCode) {
-        opener.wsLanguagePair.setSourceLanguageUsingCode(langCode);
-        opener.wsPluginStateManager.setIsBusy(true);
-        opener.wsDictionaryRepository.resolve(function (dictResponse) {
+        bg.wsLanguagePair.setSourceLanguageUsingCode(langCode);
+        bg.wsPluginStateManager.setIsBusy(true);
+        bg.wsDictionaryRepository.resolve(function (dictResponse) {
             if (dictResponse.response) {
-                opener.wsPhraseRepository.resolve(function (phrasesResponse) {
-                    opener.wsPluginStateManager.setIsBusy(false);
+                bg.wsPhraseRepository.resolve(function (phrasesResponse) {
+                    bg.wsPluginStateManager.setIsBusy(false);
                 });
             } else {
-                opener.wsPluginStateManager.setIsBusy(false);
+                bg.wsPluginStateManager.setIsBusy(false);
             }
         });
         this.closeSelectors();
     },
     selectTargetLang: function (langCode) {
-        opener.wsLanguagePair.setTargetLanguageUsingCode(langCode);
-        opener.wsPluginStateManager.setIsBusy(true);
-        opener.wsDictionaryRepository.resolve(function (dictResponse) {
+        bg.wsLanguagePair.setTargetLanguageUsingCode(langCode);
+        bg.wsPluginStateManager.setIsBusy(true);
+        bg.wsDictionaryRepository.resolve(function (dictResponse) {
             if (dictResponse.response) {
-                opener.wsPhraseRepository.resolve(function (phrasesResponse) {
-                    opener.wsPluginStateManager.setIsBusy(false);
+                bg.wsPhraseRepository.resolve(function (phrasesResponse) {
+                    bg.wsPluginStateManager.setIsBusy(false);
                 });
             } else {
-                opener.wsPluginStateManager.setIsBusy(false);
+                bg.wsPluginStateManager.setIsBusy(false);
             }
         });
         this.closeSelectors();
@@ -343,7 +345,7 @@ var wsMainWindow = {
         var source = phrase.source == null ? '' : phrase.source;
         var pronunciation = phrase.pronunciation;
         if (pronunciation == null) {
-            var sourceLangCode = opener.wsLanguagePair.getSourceLanguage().code;
+            var sourceLangCode = bg.wsLanguagePair.getSourceLanguage().code;
             pronunciation = String.Format('http://translate.google.com/translate_tts?tl={0}&q={1}', encodeURIComponent(sourceLangCode), encodeURIComponent(phrase.phrase));
         }
 
@@ -359,8 +361,8 @@ var wsMainWindow = {
         );
     },
     onCreateNewDictOpen: function () {
-        var sourceLangCode = opener.wsLanguagePair.getSourceLanguage().code;
-        var tragetLangCode = opener.wsLanguagePair.getTargetLanguage().code;
+        var sourceLangCode = bg.wsLanguagePair.getSourceLanguage().code;
+        var tragetLangCode = bg.wsLanguagePair.getTargetLanguage().code;
         if (sourceLangCode == tragetLangCode) {
             $('#createDictionaryPopup .notSelectedMessage').css('display', 'table-cell');
             $('#createDictionaryContent').css('display', 'none');
@@ -376,8 +378,8 @@ var wsMainWindow = {
         var name = $('#newDictionaryName').val();
         var privacy = document.getElementById("newDictPrivacy").checked;
 
-        opener.wsPluginStateManager.setIsBusy(true);
-        opener.wsDictionaryRepository.createDictionary(name, privacy, function (response) {
+        bg.wsPluginStateManager.setIsBusy(true);
+        bg.wsDictionaryRepository.createDictionary(name, privacy, function (response) {
             var resp = response.response;
             var error = response.error;
 
@@ -387,17 +389,17 @@ var wsMainWindow = {
                 // TODO: alert error
             }
 
-            opener.wsPluginStateManager.setIsBusy(false);
+            bg.wsPluginStateManager.setIsBusy(false);
         });
     },
     removePhrase: function (phraseId) {
-        opener.wsPluginStateManager.setIsBusy(true);
-        opener.wsPhraseRepository.removePhrase(phraseId, function (response) {
-            opener.wsPluginStateManager.setIsBusy(false);
+        bg.wsPluginStateManager.setIsBusy(true);
+        bg.wsPhraseRepository.removePhrase(phraseId, function (response) {
+            bg.wsPluginStateManager.setIsBusy(false);
         });
     },
     wordStepsLinkClick: function () {
-        opener.gBrowser.selectedTab = opener.gBrowser.addTab("http://www.wordsteps.com/");
+        bg.gBrowser.selectedTab = bg.gBrowser.addTab("http://wordsteps.com/");
         window.close();
     },
     dateFormat: function (date) {
@@ -412,9 +414,18 @@ var wsMainWindow = {
         return $('#' + id).html().trim();
     },
     pronuance: function (phraseId) {
-        opener.wsPronunciationManager.pronuance(phraseId);
+        bg.wsPronunciationManager.pronuance(phraseId);
     }
 };
 
-window.addEventListener("load", function () { wsMainWindow.onLoad(); }, false);
+window.addEventListener("load", function () {
+        wsMainWindow.onLoad();
+        $("#pluginStateSelector").focusout(function () {
+            wsMainWindow.closeSelectors();
+        });
+        $(".selector_header").focusout(function () {
+            wsMainWindow.closeSelectors();
+        });
+    }, false
+);
 window.addEventListener("unload", function () { wsMainWindow.onUnload(); }, false);

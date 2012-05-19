@@ -27,29 +27,16 @@ a {
     outline: none;
 }
 .wrapper {
-    width: 530px;
-    height: 518px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    margin-left: -265px;
-    margin-top: -259px;
     display: block;
     padding: 7px 10px;
     background-color: #F2F5F6;
     border: 1px solid #D9D9D9;
     border-radius: 5px;
-    box-shadow: 4px 4px 4px #8B8B8B;
 }
 #windowEnabler {
     width: 530px;
     height: 518px;
     position: fixed;
-    left: 50%;
-    top: 50%;
-    margin-left: -265px;
-    margin-top: -259px;
-    display: block;
     padding: 7px 10px;
     background: #CCCCCC url("../images/loader.gif") center no-repeat;
     border-radius: 5px;
@@ -65,6 +52,11 @@ a {
 }
 .logo {
     float: right;
+    opacity:0.5;
+}
+
+.logo:hover {
+    opacity:1;
 }
 .logo span {
     padding: 12px 0 10px 45px;
@@ -102,6 +94,11 @@ a {
 }
 #pluginStateSelector{
     float: left;
+    opacity:0.5;
+}
+#pluginStateSelector:hover
+{
+    opacity:1;
 }
 #pluginStateSelector .selector_list {
     margin-top: 17px;
@@ -152,11 +149,11 @@ a {
     /*margin-top: 5px !important;*/
 }
 .phrasesContent {
-    width: inherit;
-    height: inherit;
+    /*width: inherit;
+    height: inherit;*/
     /*TODO: remove this:*/
-    overflow-y: auto;
-    overflow-x: none;
+    /*overflow-y: auto;
+    overflow-x: none;*/
 }
 /*TODO: remove this:*/
 .inner, #tabHeader_New, #tabHeader_Saved {
@@ -399,14 +396,20 @@ font-weight: bold;
     margin-left: 3px;
     border: 1px solid #CAEFFF; 
     border-radius: 5px; 
-    width: 65px;    
+    width: 65px;
+    opacity:0.5;
+}
+
+.selector_header:hover
+{
+    opacity:1;
 }
 #createDictionaryLink {
     padding-top: 3px;
 }
 .selector_left_block2 .hoverLink span{
     color: #BB0000 !important;
-    margin: 3px 0 0 33px;
+    margin: 3px 0 0 15px;
     display: block;
     cursor: pointer;
 }

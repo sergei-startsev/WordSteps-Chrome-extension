@@ -2,43 +2,47 @@
 /// <reference path="/wsModels.js">
 /// <reference path="/jquery_1.5.min.js">
 
+var bg = chrome.extension.getBackgroundPage();
+
 var wsLoginWindow = {
     onLoad: function () {
+        if (bg == null) {
+            window.close();
+            return;
+        }
 
-        $("#signin").click(function(){
+        $("#signin").click(function () {
             wsLoginWindow.login();
         });
 
-        $("#password").keypress(function(){
+        $("#password").keypress(function () {
             wsLoginWindow.enterEvent(event);
         });
 
-        $("#email").keypress(function(){
+        $("#email").keypress(function () {
             wsLoginWindow.enterEvent(event);
         });
 
         /*$("#remember").click(function(){
-            //document.getElementById('remember').checked = !document.getElementById('remember').checked;
+        //document.getElementById('remember').checked = !document.getElementById('remember').checked;
         });*/
 
-        $("#create-account").click(function(){
+        $("#create-account").click(function () {
             wsLoginWindow.createNewAccount();
         });
 
-        $("#logo").click(function(){
+        $("#logo").click(function () {
             wsLoginWindow.wordStepsLinkClick();
         });
 
-        $("#email").val(wsPreferencesManager.getStringPreference(wsPreferencesEnum.lastLogin));
+        $("#email").val(bg.wsPreferencesManager.getStringPreference(bg.wsPreferencesEnum.lastLogin));
 
-        wsEventManager.subscript(wsPluginStateManager.isBusyChanged, this.onIsBusyChanged);
-        this.onIsBusyChanged(wsPluginStateManager.getIsBusy());
+        bg.wsEventManager.subscript(bg.wsPluginStateManager.isBusyChanged, this.onIsBusyChanged);
+        this.onIsBusyChanged(bg.wsPluginStateManager.getIsBusy());
 
-        //var state = wsPreferencesManager.getIntPreference(wsPreferencesEnum.pluginState);
-        //wsPluginStateManager.setState(state);
     },
     onUnload: function () {
-        wsEventManager.unscript(wsPluginStateManager.isBusyChanged, this.onIsBusyChanged);
+        bg.wsEventManager.unscript(bg.wsPluginStateManager.isBusyChanged, this.onIsBusyChanged);
     },
     onIsBusyChanged: function (newValue) {
         $('#busyIndicator').css('display', newValue ? 'block' : 'none');
@@ -73,41 +77,33 @@ var wsLoginWindow = {
             this.setError('Please enter your password.');
             return;
         }
+
         var remember = document.getElementById("remember").checked;
-        if(!chrome.extension.inIncognitoContext) {
-            wsPreferencesManager.setStringPreference(wsPreferencesEnum.lastLogin, email);
+
+        if (!chrome.extension.inIncognitoContext) {
+            bg.wsPreferencesManager.setStringPreference(bg.wsPreferencesEnum.lastLogin, email);
         }
 
-        wsUserManager.signIn(email, password, remember, function (response) {
+        bg.wsUserManager.signIn(email, password, remember, function (response) {
             var resp = response.response;
             var error = response.error;
             if (resp) {
-                wsOverlay.openMainWindow();
-                window.close();
+                //bg.wsOverlay.openMainWindow();
+                //window.close();
+                noty({ text: 'Success! You are logged in. Ok, now you can use our service.',
+                    theme: 'noty_theme_twitter',
+                    type: 'success'
+                });
             } else if (error) {
-                if (error.error_code == wsAPIErrorsEnum.invalidLoginPassword) {
+                if (error.error_code == bg.wsAPIErrorsEnum.invalidLoginPassword) {
                     wsLoginWindow.setError('Incorrect email or password.');
                 } else {
                     wsLoginWindow.setError('Unable to connect to the server. Please try again.');
                 }
             }
         });
-    },
-};
+    }
+}
 
 window.addEventListener("load", function () { wsLoginWindow.onLoad(); }, false);
 window.addEventListener("unload", function () { wsLoginWindow.onUnload(); }, false);
-
-$(document).ready(function () {
-    var email = wsPreferencesManager.getStringPreference(wsPreferencesEnum.userEmail);
-    var password = wsPreferencesManager.getStringPreference(wsPreferencesEnum.userPassword);
-    var state = wsPreferencesManager.getIntPreference(wsPreferencesEnum.pluginState);
-
-    if (state != wsPluginStateEnum.LOGGED_OUT && email != "" && password != "") {
-        wsUserManager.signIn(email, password, true, function (response) {
-            if (response.response) {
-                wsPluginStateManager.setState(state);
-            }
-        });
-    }
-});
