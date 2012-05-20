@@ -8,7 +8,7 @@ var bg = chrome.extension.getBackgroundPage();
 
 var wsMainWindow = {
     isExistsDictionaries: false,
-    
+
     onLoad: function () {
         if (bg == null) {
             window.close();
@@ -419,13 +419,14 @@ var wsMainWindow = {
 };
 
 window.addEventListener("load", function () {
-        wsMainWindow.onLoad();
-        $("#pluginStateSelector").focusout(function () {
-            wsMainWindow.closeSelectors();
-        });
-        $(".selector_header").focusout(function () {
-            wsMainWindow.closeSelectors();
-        });
-    }, false
+    wsMainWindow.onLoad();
+    $("#pluginStateSelector").focusout(function () {
+        wsMainWindow.closeSelectors();
+    });
+    $(".selector").focusout(function () {
+        wsMainWindow.closeSelectors();
+    });
+}, false
 );
+
 window.addEventListener("unload", function () { wsMainWindow.onUnload(); }, false);

@@ -90,7 +90,7 @@ var wsLoginWindow = {
             if (resp) {
                 //bg.wsOverlay.openMainWindow();
                 //window.close();
-                noty({ text: 'Success! You are logged in. Ok, now you can use our service.',
+                noty({ text: 'Success! You are logged in. OK, now you can use our service.',
                     theme: 'noty_theme_twitter',
                     type: 'success'
                 });
