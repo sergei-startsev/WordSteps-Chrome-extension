@@ -1,0 +1,99 @@
+{
+	"extName":{
+		"message" : "WordSteps"
+	},
+	"pluginStateEnable":{
+		"message" : "Включить"
+	},
+	"pluginStateDisable":{
+		"message" : "Выключить"
+	},
+	"pluginStateLoggedOut":{
+		"message" : "Выйти"
+	},
+	"translateFrom":{
+		"message" : "Перевести с"
+	},
+	"translateTo":{
+		"message" : "Перевести на"
+	},
+	"dictionary":{
+		"message" : "Словарь"
+	},
+	"createNew":{
+		"message" : "Создать новый"
+	},
+	"selectDiffLang":{
+		"message" : "Вы должны выбрать разные языки."
+	},
+	"enterDictName":{
+		"message" : "Введите название словаря"
+	},
+	"availableOnly4me":{
+		"message" : "Доступно только для меня"
+	},
+	"phrases":{
+		"message" : "Фразы"
+	},
+	"dictIsNotSelected":{
+		"message" : "Словарь не выбран."
+	},
+	"noDict4CurrLang":{
+		"message" : "Для текущих языков нет словарей.<br/>
+        Вы можете создать новый словарь нажав 'Создать новый'."
+	},
+	"settingTitle":{
+		"message" : "WordSteps - Настройки"
+	},
+	"signIn":{
+		"message" : "Войти в WordSteps"
+	},
+	"createAccount":{
+		"message" : "Создать аккаунт"
+	},
+	"email":{
+		"message" : "Почта"
+	},
+	"password":{
+		"message" : "Пароль"
+	},
+	"rememberMe":{
+		"message" : "Запомнить меня"
+	},
+	"sign":{
+		"message" : "Войти"
+	},
+	"clickTranslation":{
+		"message" : "Нажмиете на переводе, чтобы сохранить:"
+	},
+	"selectDict":{
+		"message" : "Вы должны выбрать словарь."
+	},
+	"specifyTranslation":{
+		"message" : "Или укажите ваш перевод и нажмите Enter"
+	},
+	"openMainWindow":{
+		"message" : "Открыть главное окно."
+	},
+	"isNotAvailable":{
+		"message" : "Сервис переводов недоступен."
+	},
+	"enterEmail":{
+		"message" : "Пожалуйста, введите адрес вашей почты."
+	},
+	"enterPassword":{
+		"message" : "Пожалуйста, введите ваш пароль."
+	},
+	"success":{
+		"message" : "Отлично! Вы вошли. Теперь вы можете использовать наш сервис."
+	},
+	"incorrect":{
+		"message" : "Некорректные e-mail или пароль."
+	},
+	"unable2Connect":{
+		"message" : "Не могу соединиться с сервером. Попробуйте позже."
+	},
+	"youMustLogin":{
+		"message" : "Для того, чтобы начать пользоваться нашим сервисом, вам необходимо авторизоваться на странице настроек."
+	}
+}

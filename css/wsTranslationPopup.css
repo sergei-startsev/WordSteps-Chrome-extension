@@ -25,18 +25,19 @@
 #wsTranslationPopup {
     position: fixed !important;
     background: #f2f5f6 !important;
-	box-shadow: 4px 4px 4px #8B8B8B !important;
-	border-radius: 7px !important;
+	border: solid 1px #CCC;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 0px 0px 15px #BBB !important;
 	z-index: 2147483647 !important;
 }
 #wsTranslationPopup .main_popup {
-	width: 365px !important;
+	width: 450px !important;
 	height: 120px !important;
     position: relative !important;
     z-index: 2147483645 !important;	
 }
 #wsTranslationPopup .popup_center {
-    width: 342px !important;
+    width: 420px !important;
     height: auto !important;
     min-height: 60px !important;
     border-radius: 7px !important;
@@ -52,7 +53,7 @@
 
 
 #wsTranslationPopup .main_popup_error {
-    width: 365px !important;
+    width: 420px !important;
     height: 120px !important;
     border-radius: 7px !important;
     border: solid 1px #d9d9d9 !important;
@@ -81,7 +82,7 @@
 	cursor: pointer !important;
 }
 #wsTranslationPopup .main_popup_load{
-    width: 365px !important;
+    width: 420px !important;
     height: 120px !important;
     border-radius: 7px !important;
     border: solid 1px #d9d9d9 !important;
@@ -117,7 +118,7 @@
 #wsTranslationPopup .popup_top p {
     padding: 0 !important;
     margin: 4px 0 0 27px !important;
-    width: 320px !important;
+    width: 420px !important;
     height: 20px !important; 
     overflow: hidden !important;
 	font-size: 12px !important;
@@ -187,7 +188,7 @@ color: #fff !important;
     background: white !important;
     float: left !important;
     margin: 7px 0px 10px 10px !important;
-    width: 342px !important; 
+    width: 420px !important; 
     height: 18px !important;
 	-khtml-user-select: text !important; 
 	cursor: text !important;

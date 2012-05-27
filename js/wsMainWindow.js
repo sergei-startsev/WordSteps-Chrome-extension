@@ -15,6 +15,13 @@ var wsMainWindow = {
             return;
         }
 
+        var state = bg.wsPreferencesManager.getIntPreference(bg.wsPreferencesEnum.pluginState);
+
+        if (state == bg.wsPluginStateEnum.LOGGED_OUT) {
+            $("#root").html(chrome.i18n.getMessage("youMustLogin"));
+            return;   
+        }
+
         $('#login').html(bg.wsUserManager.user.login);
 
         bg.wsEventManager.subscript(bg.wsPluginStateManager.isBusyChanged, this.onIsBusyChanged);
@@ -148,6 +155,7 @@ var wsMainWindow = {
                         wsMainWindow.isExistsDictionaries = true;
                     } else {
                         var html = wsMainWindow.getTemplate('emptyDictSelectorTemplate');
+                        html=String.Format(html, chrome.i18n.getMessage("noDict4CurrLang"));
                         $('#dictionarySelectorList').html(html);
                         wsMainWindow.isExistsDictionaries = false;
                     }

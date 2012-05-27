@@ -1,6 +1,7 @@
 {
 	"name": "WordSteps",
 	"version": "1.1",
+	"default_locale" : "ru",
 
 	"description": "WordSteps helps to translate foreign phrases and learn them later from web, mobile or desktop.",
 	"homepage_url": "http://wordsteps.com",

@@ -1,0 +1,99 @@
+{
+	"extName":{
+		"message" : "WordSteps"
+	},
+	"pluginStateEnable":{
+		"message" : "Enable"	
+	},
+	"pluginStateDisable":{
+		"message" : "Disable"
+	},
+	"pluginStateLoggedOut":{
+		"message" : "Sign out"
+	},
+	"translateFrom":{
+		"message" : "Translate from"
+	},
+	"translateTo":{
+		"message" : "Translate to"
+	},
+	"dictionary":{
+		"message" : "Dictionary"
+	},
+	"createNew":{
+		"message" : "Create new"
+	},
+	"selectDiffLang":{
+		"message" : "You must select a different languages."
+	},
+	"enterDictName":{
+		"message" : "Enter dictionary name"
+	},
+	"availableOnly4me":{
+		"message" : "Available only for me"
+	},
+	"phrases":{
+		"message" : "Phrases"
+	},
+	"dictIsNotSelected":{
+		"message" : "Dictionary is not selected."
+	},
+	"noDict4CurrLang":{
+		"message" : "For current languages do not have dictionaries.<br/>
+        You can create a new dictionary by clicking 'Create new'."
+	},
+	"settingTitle":{
+		"message" : "WordSteps - Settings"
+	},
+	"signIn":{
+		"message" : "Sign in to WordSteps"
+	},
+	"createAccount":{
+		"message" : "Create an account"
+	},
+	"email":{
+		"message" : "Email"
+	},
+	"password":{
+		"message" : "Password"
+	},
+	"rememberMe":{
+		"message" : "Remember me"
+	},
+	"sign":{
+		"message" : "Sign in"
+	},
+	"clickTranslation":{
+		"message" : "Click translation to save:"
+	},
+	"selectDict":{
+		"message" : "You must select a dictionary."
+	},
+	"specifyTranslation":{
+		"message" : "Or specify your translation and press enter"
+	},
+	"openMainWindow":{
+		"message" : "Open main window."
+	},
+	"isNotAvailable":{
+		"message" : "Translation service is not available."
+	},
+	"enterEmail":{
+		"message" : "Please enter your email."
+	},
+	"enterPassword":{
+		"message" : "Please enter your password."
+	},
+	"success":{
+		"message" : "Success! You are logged in. OK, now you can use our service."
+	},
+	"incorrect":{
+		"message" : "Incorrect email or password."
+	},
+	"unable2Connect":{
+		"message" : "Unable to connect to the server. Please try again."
+	},
+	"youMustLogin":{
+		"message" : "To begin using our service, you must log in to the settings page."
+	}
+}

@@ -17,23 +17,23 @@
          <div id="pluginStateSelectorList" class="drop_down selector_list">
            <div id="pluginStateSelectorItem_ACTIVE" class="pluginStateSelectorItem">
              <a onclick="wsMainWindow.setPluginState(bg.wsPluginStateEnum.ACTIVE);">
-               <b class="pluginStateEnable">Enable</b>
+               <b class="pluginStateEnable"><script>document.write(chrome.i18n.getMessage("pluginStateEnable"));</script></b>
              </a>
            </div>
            <div id="pluginStateSelectorItem_DISABLED" class="pluginStateSelectorItem">
              <a onclick="wsMainWindow.setPluginState(bg.wsPluginStateEnum.DISABLED);">
-               <b class="pluginStateDisable">Disable</b>
+               <b class="pluginStateDisable"><script>document.write(chrome.i18n.getMessage("pluginStateDisable"));</script></b>
              </a>
            </div>
            <div id="pluginStateSelectorItem_LOGGED_OUT" class="pluginStateSelectorItem">
              <a onclick="wsMainWindow.setPluginState(bg.wsPluginStateEnum.LOGGED_OUT);" >
-               <b class="pluginStateLoggedOut">Sign out</b>
+               <b class="pluginStateLoggedOut"><script>document.write(chrome.i18n.getMessage("pluginStateLoggedOut"));</script></b>
              </a>
            </div>
          </div>
        </div>
        <div class="logo">
-         <span onclick="window.open('http://wordsteps.com/');">WordSteps</span>
+         <span onclick="window.open('http://wordsteps.com/');"><script>document.write(chrome.i18n.getMessage("extName"));</script></span>
        </div>
 	</div>
 	<div class="selector_wrapper" id="languegesSelector">
@@ -41,7 +41,7 @@
 		<tr>
 		  <div class="selector_left_block">
             <div class="selector_title_text">
-              <span>Translate from</span>
+              <span><script>document.write(chrome.i18n.getMessage("translateFrom"));</script></span>
             </div>
             <div class="selector" tabindex="0">
               <span onclick="wsMainWindow.toggleSelector('sourceLangSelectorList')">
@@ -58,7 +58,7 @@
 		  </div>
 		  <div class="selector_right_block">
             <div class="selector_title_text">
-			    <span>Translate to</span>
+			    <span><script>document.write(chrome.i18n.getMessage("translateTo"));</script></span>
             </div>
             <div class="selector" tabindex="0">
               <span onclick="wsMainWindow.toggleSelector('targetLangSelectorList')">
@@ -81,7 +81,7 @@
 		<tr>
 		  <div class="selector_left_block2">
             <div class="selector_title_text">
-              <span>Dictionary</span>
+              <span><script>document.write(chrome.i18n.getMessage("dictionary"));</script></span>
             </div>
             <div class="selector" tabindex="0">
               <span onclick="wsMainWindow.toggleSelector('dictionarySelectorList')">
@@ -95,20 +95,20 @@
 			  </div>
             </div>
             <div class="hoverLink">
-              <span onclick="wsMainWindow.toggleSelector('createDictionaryPopup'); wsMainWindow.onCreateNewDictOpen();">Create new</span>
+              <span onclick="wsMainWindow.toggleSelector('createDictionaryPopup'); wsMainWindow.onCreateNewDictOpen();"><script>document.write(chrome.i18n.getMessage("createNew"));</script></span>
             </div>
 		  </div>       
 		  <div class="selector_right_block" id="createDictionaryLink">
             <div id="createDictionaryPopup" class="drop_down">
               <div class="notSelectedMessage">
-                <center>You must select a different languages.</center>
+                <center><script>document.write(chrome.i18n.getMessage("selectDiffLang"));</script></center>
               </div>
               <div id="createDictionaryContent">
-                <center>Enter dictionary name</center>
+                <center><script>document.write(chrome.i18n.getMessage("enterDictName"));</script></center>
                 <input type="text" id="newDictionaryName" name="" value="" />
                 <div class="bottom">
                   <input type="checkbox" class="checkbox" id="newDictPrivacy" name="" checked="on" />
-                  <span class="checkbox_text" href="#" onclick="document.getElementById('newDictPrivacy').checked = !document.getElementById('newDictPrivacy').checked">Available only to me</span>
+                  <span class="checkbox_text" href="#" onclick="document.getElementById('newDictPrivacy').checked = !document.getElementById('newDictPrivacy').checked"><script>document.write(chrome.i18n.getMessage("availableOnly4me"));</script></span>
                   <input type="button" class="button" name="" value="Ok" onclick ="wsMainWindow.createNewDict();" />
                 </div>
                 <img class="create_new_close" src=images/close.gif" width="8" height="8" onclick="wsMainWindow.closeCreateNewDict();" />
@@ -118,10 +118,10 @@
 		</tr>
 	  </table>
 	</div>            
-	<div class="title">Phrases</div>
+	<div class="title"><script>document.write(chrome.i18n.getMessage("phrases"));</script></div>
 	<div id="phrases">
       <div class="notSelectedMessage">
-        <center>Dictionary is not selected.</center>
+        <center><script>document.write(chrome.i18n.getMessage("dictIsNotSelected"));</script></center>
       </div>
       <div class="phrasesContent">
         <ul>
@@ -202,8 +202,7 @@
   <script type="text/template" id="emptyDictSelectorTemplate">
     <div class="notSelectedMessage">
       <center>
-        For current languages do not have dictionaries.<br/>
-        You can create a new dictionary by clicking "create new".
+        {0}
       </center>
     </div>
   </script>

@@ -158,7 +158,10 @@ var wsTranslationPopup = {
         var popupTemplate = $('#wsTranslationPopup').html().trim();
         var sourceLangCode = encodeURIComponent(wsLanguagePair.getSourceLanguage().code);
         phrase = encodeURIComponent(phrase);
-        popupTemplate = String.Format(popupTemplate, location.host, sourceLangCode, phrase);
+        popupTemplate = String.Format(popupTemplate, location.host, sourceLangCode, phrase,
+            chrome.i18n.getMessage("clickTranslation"),chrome.i18n.getMessage("specifyTranslation"),
+            chrome.i18n.getMessage("selectDict"), chrome.i18n.getMessage("openMainWindow"),
+            chrome.i18n.getMessage("isNotAvailable"));
 
         this.openedInTab = tabId;
         this.onOpened(x, y, popupTemplate);

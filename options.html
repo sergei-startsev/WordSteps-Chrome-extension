@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=windows-1250">
     
-    <title>WordSteps - Settings</title>
+    <title></title>
 
     <script type="text/javascript" src="js/jquery_1.5.min.js"></script>
     <script type="text/javascript" src="js/StringFormat.js"></script>
@@ -21,19 +21,19 @@
     <div id="conteiner">
       <div class="top">
         <div class="logo" id="logo">
-          WordSteps
+          <script>document.write(chrome.i18n.getMessage("extName"));</script>
         </div>
-        <span class="create_accaunt" id="create-account">Create an account</span>
+        <span class="create_accaunt" id="create-account"><script>document.write(chrome.i18n.getMessage("createAccount"));</script></span>
       </div>
       <div class="title">
-        <h1>Sign in to WordSteps</h1>
+        <h1><script>document.write(chrome.i18n.getMessage("signIn"));</script></h1>
       </div>
       <div class="mainform">
-        <span>Email</span><input id="email" maxlength="32" type="text" name="email" class="email"/>
+        <span><script>document.write(chrome.i18n.getMessage("email"));</script></span><input id="email" maxlength="32" type="text" name="email" class="email"/>
         <div style="clear: both"></div>
-        <span>Password</span><input id="password" maxlength="32" type="password" name="pass" class="pass"/>
+        <span><script>document.write(chrome.i18n.getMessage("password"));</script></span><input id="password" maxlength="32" type="password" name="pass" class="pass"/>
         <div style="clear: both"></div>
-        <input type="checkbox" checked="checked" id="remember" name="remember" class="rememb"/><text class="checkbox_text"> Remember me</text>
+        <input type="checkbox" checked="checked" id="remember" name="remember" class="rememb"/><text class="checkbox_text"><script>document.write(chrome.i18n.getMessage("rememberMe"));</script></text>
         <input type="button" id="signin" name="signin" value="Sign in" class="sign_button" />              
       </div>
 	  <div style="clear: both"></div>
@@ -48,47 +48,6 @@
             </div>
         </center>
 	</div>
-
-    <!-- Params: 0 - extension id, 1 - sound source lang, 2 - sound phrase. -->
-    <script type="text/template" id="wsTranslationPopup">
-        <div class="main_popup">        
-            <div class="popup_top">   
-            <div class="sound">
-                <img src="chrome-extension://{0}/images/sound.png" width="12" height="10" />
-            </div>
-            <p><span class="phrase" />. Click translation to save:</p>
-            <div class="popup_close">
-                <img src="chrome-extension://{0}/images/close.gif" width="8" height="8"/>
-            </div>
-            </div>
-            <div class="popup_center">
-            <ul class="translate_container" />  
-            </div>
-            <input type="text" class="popup_textbox popup_textbox_empty" value="Or specify your translation and press enter" />
-        </div>
-         
-        <div class="main_popup_error not_selected_dict_error">
-            <center>
-	            <p>You must select a dictionary.</p>	  
-	            <span class="open_window_link">Open main window.</span>
-	        </center>
-        </div>
-
-        <div class="main_popup_error translate_service_disabled_error">
-            <center>
-	        <p>Translation service is not available.</p>	  
-	        </center>
-        </div>
-        
-        <div class="main_popup_load">
-            <div class="progress"><img src="chrome-extension://{0}/images/loader.gif" width="220" height="19"/></div>
-        </div>
-    </script>
-
-    <!-- Params: 0 - variant. -->
-    <script type="text/template" id="translationVariant">
-        <li class="translateVariant"><span>{0}</span>
-    </script>
 
     <div style="display:none;">
         <canvas id="stateButtonCanvas" width="19" height="19"></canvas>

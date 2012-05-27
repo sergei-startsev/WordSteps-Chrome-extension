@@ -103,7 +103,7 @@ a {
 #pluginStateSelector .selector_list {
     margin-top: 17px;
     margin-left: -4px;
-    width: 80px;
+    width: 100px;
     min-height: 30px;
     cursor: pointer;
 }

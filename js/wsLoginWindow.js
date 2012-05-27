@@ -11,6 +11,9 @@ var wsLoginWindow = {
             return;
         }
 
+        $("title").html(chrome.i18n.getMessage("settingTitle"));
+        $("#signin").val(chrome.i18n.getMessage("sign"));
+
         $("#signin").click(function () {
             wsLoginWindow.login();
         });
@@ -69,12 +72,12 @@ var wsLoginWindow = {
 
         var email = $("#email").val().trim();
         if (email == '') {
-            this.setError('Please enter your email.');
+            this.setError(chrome.i18n.getMessage("enterEmail"));
             return;
         }
         var password = $("#password").val().trim();
         if (password == '') {
-            this.setError('Please enter your password.');
+            this.setError(chrome.i18n.getMessage("enterPassword"));
             return;
         }
 
@@ -90,15 +93,15 @@ var wsLoginWindow = {
             if (resp) {
                 //bg.wsOverlay.openMainWindow();
                 //window.close();
-                noty({ text: 'Success! You are logged in. OK, now you can use our service.',
+                noty({ text: chrome.i18n.getMessage("success"),
                     theme: 'noty_theme_twitter',
                     type: 'success'
                 });
             } else if (error) {
                 if (error.error_code == bg.wsAPIErrorsEnum.invalidLoginPassword) {
-                    wsLoginWindow.setError('Incorrect email or password.');
+                    wsLoginWindow.setError(chrome.i18n.getMessage("incorrect"));
                 } else {
-                    wsLoginWindow.setError('Unable to connect to the server. Please try again.');
+                    wsLoginWindow.setError(chrome.i18n.getMessage("unable2Connect"));
                 }
             }
         });
