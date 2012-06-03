@@ -79,11 +79,11 @@
   	<div class="selector_wrapper" id="dictionarySelector">
 	  <table width="100%" border="0">
 		<tr>
-		  <div class="selector_left_block2">
+		  <div class="selector_left_block2" >
             <div class="selector_title_text">
               <span><script>document.write(chrome.i18n.getMessage("dictionary"));</script></span>
             </div>
-            <div class="selector" tabindex="0">
+            <div class="selector">
               <span onclick="wsMainWindow.toggleSelector('dictionarySelectorList')">
                 <div class="selector_header">
                   <div id="currentDictionaryLabel" class="selector_header_text"></div>
@@ -92,10 +92,12 @@
               </span>
               <div id="dictionarySelectorList" class="drop_down selector_list">
                 <!-- Dynamic generation in wsMainWindow.onDictionaryCollectionChanged() -->
-			  </div>
+              </div>
             </div>
-            <div class="hoverLink">
-              <span onclick="wsMainWindow.toggleSelector('createDictionaryPopup'); wsMainWindow.onCreateNewDictOpen();"><script>document.write(chrome.i18n.getMessage("createNew"));</script></span>
+            <div class="hoverLink" tabindex="0">
+              <span onclick="wsMainWindow.toggleSelector('createDictionaryPopup'); wsMainWindow.onCreateNewDictOpen();">
+                <script>document.write(chrome.i18n.getMessage("createNew"));</script>
+              </span>
             </div>
 		  </div>       
 		  <div class="selector_right_block" id="createDictionaryLink">
@@ -111,7 +113,7 @@
                   <span class="checkbox_text" href="#" onclick="document.getElementById('newDictPrivacy').checked = !document.getElementById('newDictPrivacy').checked"><script>document.write(chrome.i18n.getMessage("availableOnly4me"));</script></span>
                   <input type="button" class="button" name="" value="Ok" onclick ="wsMainWindow.createNewDict();" />
                 </div>
-                <img class="create_new_close" src=images/close.gif" width="8" height="8" onclick="wsMainWindow.closeCreateNewDict();" />
+                <img class="create_new_close" src="images/close.gif" width="8" height="8" onclick="wsMainWindow.closeCreateNewDict();" />
               </div>
             </div>
 		  </div>
@@ -146,10 +148,10 @@
   <div id="windowEnabler" />
 
   <!-- TEMPLATES -->
-  <!-- Params: 0 - lang type (Source or Target), 1 - lang code, 2 - lang image, 3 - lang name -->
+  <!-- Params: 0 - lang type (Source or Target), 1 - lang code, 2 - lang image, 3 - lang name, 4 - Current Lang -->
   <script type="text/template" id="langSelectorItemTemplate">
     <div>
-      <span onclick="wsMainWindow.select{0}Lang('{1}')">
+      <span onclick="wsMainWindow.select{0}Lang('{1}')" class="{4}">
         <img src="{2}"/><b>{3}</b>
       </span>
     </div>

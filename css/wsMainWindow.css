@@ -222,9 +222,9 @@ a {
 }
 #createDictionaryPopup {
     height: 85px;
-    width: 250px;
-    margin-left: -236px;
-    margin-top: 18px;
+    width: 300px;
+    margin-left: -302px;
+    margin-top: 22px;
 }
 #createDictionaryPopup .notSelectedMessage {
     float: none;
@@ -236,44 +236,50 @@ a {
     padding: 5px;
 }
 #createDictionaryContent center {
-    font-weight: bold;
 }
 #newDictionaryName {
-    width: 232px;
+    width: 200px;
     height: 18px;
-    margin-top: 5px;
+    margin: 5px 10px 5px 40px;
 }
 #createDictionaryContent .button {
     width: 50px;    
     font-weight: bold;
-    margin-top: -20px;
-    margin-left: 185px;
+    margin-top: 0px;
+    margin-left: 215px;
     float: left;
 }
 #createDictionaryContent .bottom {
-    margin-top: 8px;
+    margin-top: 5px;
 }
 .button {
-    background-color: #E3F1D7;
-    cursor: pointer; 
-    text-align: center; 
-    font-size: 12px; 
-    font-weight: bold;
-    border: 1px solid #999999;
-    -moz-border-radius: 5px;
+    color: #5B8751;
+    background-color: #E0FAC0;
+    border: 1px solid #C0D9A6;
+    cursor: pointer !important;
+    padding-bottom: 2px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 2px;
     color: #797C76;
-    padding-bottom: 3px;
-    border-radius: 3px;
 }
+
+.button:hover {
+    color: #47733D;
+    background-color: #CCE6AC;
+    border: 1px solid #C0D9A6;
+}
+
 input[type=checkbox] {
     cursor: pointer;
     float: left;
 }
 .checkbox_text {
-    margin-top: -1px;
+    margin-top: 3px;
     position: absolute;
     float: left;
     cursor: pointer;
+    font-size:12px;
 }
 input[type=text]
 {
@@ -510,4 +516,8 @@ cursor: pointer;
     margin-left: -10px;
     margin-top: 2px;
     cursor: pointer;
+}
+
+.current{
+    background-color: #C4E1EA;
 }

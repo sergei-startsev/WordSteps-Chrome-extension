@@ -3,7 +3,7 @@ var wsPreferencesEnum = {
     userPassword: { key: 'password', defValue: '' },
     pluginState: { key: 'pluginState', defValue: 0 },
     sourceLanguage: { key: 'sourceLanguage', defValue: 'en' },
-    targetLanguage: { key: 'targetLanguage', defValue: 'en' },
+    targetLanguage: { key: 'targetLanguage', defValue: 'ru' },
     currentDict: { key: 'currentDict', defValue: 0 },
     alertErrors: { key: 'alertErrors', defValue: false },
     lastLogin: { key: 'lastLogin', defValue: '' }

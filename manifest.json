@@ -15,7 +15,8 @@
 		"tabs", 
 		"http://*/*", 
 		"https://*/*",
-		"http://api.wordsteps.com/*"
+		"http://api.wordsteps.com/*",
+		"http://*.google.com/", "https://*.google.com/"
 	],
 
 	"background": {
@@ -25,7 +26,7 @@
 	"options_page": "options.html",
 	
 	"browser_action": {
-		"default_title": "WordSteps.com",
+		"default_title": "WordSteps",
 		"default_popup": "popup.html"
 	},
 
@@ -34,6 +35,6 @@
 		"js": [ "js/jquery_1.5.min.js", "js/StringFormat.js", "js/wsTabsOverlay.js" ],
 		"all_frames": false,
 		"run_at": "document_start",
-		"matches": [ "http://*/*", "https://*/*" ]
+		"matches": [ "http://*/*", "https://*/*", "http://*.google.com/", "https://*.google.com/" ]
 	} ]
 }

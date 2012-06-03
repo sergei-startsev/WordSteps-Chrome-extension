@@ -24,7 +24,7 @@
 		"message" : "Create new"
 	},
 	"selectDiffLang":{
-		"message" : "You must select a different languages."
+		"message" : "You must select different languages."
 	},
 	"enterDictName":{
 		"message" : "Enter dictionary name"
@@ -39,8 +39,8 @@
 		"message" : "Dictionary is not selected."
 	},
 	"noDict4CurrLang":{
-		"message" : "For current languages do not have dictionaries.<br/>
-        You can create a new dictionary by clicking 'Create new'."
+		"message" : "You don't have any dictionaries for current languages.<br/>
+		You can create a new dictionary by clicking on 'Create new'"
 	},
 	"settingTitle":{
 		"message" : "WordSteps - Settings"
@@ -94,6 +94,6 @@
 		"message" : "Unable to connect to the server. Please try again."
 	},
 	"youMustLogin":{
-		"message" : "To begin using our service, you must log in to the settings page."
+		"message" : "To begin using our service, you must log in to the settings page. Use your account from our site WordSteps.com"
 	}
 }

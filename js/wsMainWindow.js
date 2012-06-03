@@ -18,7 +18,11 @@ var wsMainWindow = {
         var state = bg.wsPreferencesManager.getIntPreference(bg.wsPreferencesEnum.pluginState);
 
         if (state == bg.wsPluginStateEnum.LOGGED_OUT) {
-            $("#root").html(chrome.i18n.getMessage("youMustLogin"));
+            
+            chrome.tabs.create({
+                url: chrome.extension.getURL("options.html")
+            });
+            window.close();
             return;   
         }
 
@@ -66,8 +70,17 @@ var wsMainWindow = {
                     for (var i in languages) {
                         language = languages[i];
                         var code = language.code.toUpperCase();
-                        sourceHtml += String.Format(template, "Source", code, language.image, language.name);
-                        targetHtml += String.Format(template, "Target", code, language.image, language.name);
+                        if(bg.wsLanguagePair.getSourceLanguage().code.toUpperCase()==code){
+                            sourceHtml += String.Format(template, "Source", code, language.image, language.name, "current");
+                        }else{
+                            sourceHtml += String.Format(template, "Source", code, language.image, language.name, "");
+                        }
+
+                        if(bg.wsLanguagePair.getTargetLanguage().code.toUpperCase()==code){
+                            targetHtml += String.Format(template, "Target", code, language.image, language.name,"current");
+                        }else{
+                            targetHtml += String.Format(template, "Target", code, language.image, language.name,"");
+                        }
                     }
 
                     $('#sourceLangSelectorList').html(sourceHtml);
@@ -433,6 +446,11 @@ window.addEventListener("load", function () {
     });
     $(".selector").focusout(function () {
         wsMainWindow.closeSelectors();
+    });
+    $(".hoverLink").focusout(function () {
+        if($("#createDictionaryPopup .notSelectedMessage:visible").length>0){
+            wsMainWindow.closeSelectors();
+        }
     });
 }, false
 );

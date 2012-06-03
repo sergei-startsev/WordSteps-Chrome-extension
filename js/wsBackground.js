@@ -7,7 +7,18 @@
         wsUserManager.signIn(email, password, true, function (response) {
             if (response.response) {
                 wsPluginStateManager.setState(state);
+                chrome.browserAction.setTitle({ title: chrome.i18n.getMessage("extName") });
             }
         });
+    }else{
+        chrome.browserAction.setTitle({ title: chrome.i18n.getMessage("youMustLogin") });
     }
+
+    wsEventManager.subscript(wsPluginStateManager.stateChanged, function(pluginState){
+        if (pluginState != wsPluginStateEnum.LOGGED_OUT){
+            chrome.browserAction.setTitle({ title: chrome.i18n.getMessage("extName") });
+        }else{
+            chrome.browserAction.setTitle({ title: chrome.i18n.getMessage("youMustLogin") });
+        }
+    });
 });

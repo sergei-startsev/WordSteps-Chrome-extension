@@ -97,8 +97,8 @@
     float: left !important;
     width: 12px !important;
     height: 10px !important; 
-    padding: 0px !important;	
-	margin: 6px 0 0 11px !important;
+    padding: 2px !important;	
+	margin: 6px 1px 0 11px !important;
 }
 #wsTranslationPopup .sound img{
     padding: 0px !important;	
@@ -108,7 +108,7 @@
 
 #wsTranslationPopup .popup_top{
     width: 100% !important;
-    height: 25px !important;
+    height: 40px !important;
     float: left !important;
     position: relative !important;
     z-index: 1 !important;
@@ -118,20 +118,24 @@
 #wsTranslationPopup .popup_top p {
     padding: 0 !important;
     margin: 4px 0 0 27px !important;
-    width: 420px !important;
-    height: 20px !important; 
+    width: 400px !important;
+    height: 40px !important; 
     overflow: hidden !important;
 	font-size: 12px !important;
-	line-height: 1 !important;
+	line-height: 1.5 !important;
+    word-wrap: normal;
+    clear: none;
 }
 #wsTranslationPopup .popup_top p span{
     color: #0000ff !important;
+    cursor: pointer !important;
 }
 #wsTranslationPopup .popup_close {
     width: 10px !important;
     height: 10px !important;
     float: right !important;
-    margin: -18px 4px 0px 0px !important;
+    top:0;
+    margin: -35px 4px 0px 0px !important;
 }
 #wsTranslationPopup .popup_close img {
     cursor: pointer !important;

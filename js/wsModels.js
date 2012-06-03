@@ -319,6 +319,9 @@ var wsLanguagePair = {
         if (language == null) language = wsLanguageRepository.getDefault();
         if (this.sourceLanguage != null && this.sourceLanguage.code == language.code) return;
 
+        if(this.targetLanguage!=null && this.targetLanguage.code==language.code)
+            return;
+
         this.sourceLanguage = language;
         if (wsUserManager.user.remember) wsPreferencesManager.setStringPreference(wsPreferencesEnum.sourceLanguage, language.code);
         wsEventManager.call(this.sourceLanguageChanged, this.sourceLanguage);
@@ -333,6 +336,9 @@ var wsLanguagePair = {
     setTargetLanguage: function (language) {
         if (language == null) language = wsLanguageRepository.getDefault();
         if (this.targetLanguage != null && this.targetLanguage.code == language.code) return;
+
+        if(this.sourceLanguage!=null && this.sourceLanguage.code==language.code)
+            return;
 
         this.targetLanguage = language;
         if (wsUserManager.user.remember) wsPreferencesManager.setStringPreference(wsPreferencesEnum.targetLanguage, language.code);

@@ -47,29 +47,47 @@ var wsSelectionDetector = {
     onPageMouseUp: function (event) {
         var point = new Point(event.clientX, event.clientY);
 
-        wsSelectionDetector.onSelectionDetected(wsSelectionDetector.lastMouseDownPoint, point);
-        wsSelectionDetector.onDoubleClickSelectionDetected(wsSelectionDetector.lastMouseDownPoint, wsSelectionDetector.lastMouseDownTime, event.timeStamp, point);
+        wsSelectionDetector.onSelectionDetected(wsSelectionDetector.lastMouseDownPoint, point, event);
+        wsSelectionDetector.onDoubleClickSelectionDetected(wsSelectionDetector.lastMouseDownPoint, wsSelectionDetector.lastMouseDownTime, event.timeStamp, point,event);
 
         wsSelectionDetector.lastMouseDownTime = event.timeStamp;
     },
-    onSelectionDetected: function (downPoint, upPoint) {
+    onSelectionDetected: function (downPoint, upPoint, event) {
         if (downPoint.toVector(upPoint).squareLength() < 25) return;
         if (wsTranslationPopup.isPointInPopup(downPoint.x, downPoint.y)) return;
 
         var selectedText = this.getSelectedText();
-        if (selectedText == null) return;
+        if (selectedText == null){
+            var startPos = event.target.selectionStart;
+            var endPos = event.target.selectionEnd;
+            var selText = event.target.value.substring(startPos, endPos);
+            if (selText != null){
+                selectedText={ text: selText, x: downPoint.x, y: downPoint.y };
+            }else{
+                return;
+            }
+        }
 
         this.isSelectionDetected = true;
         var request = String.Format("wsSelectionDetector.onSelectionDetected({0}, {1}, {2}, {3}, sender.tab.id);", JSON.stringify(selectedText.text), selectedText.x, selectedText.y, JSON.stringify(location.host));
         chrome.extension.sendRequest(request);
     },
-    onDoubleClickSelectionDetected: function (downPoint, lastTimeStamp, timeStamp, point) {
+    onDoubleClickSelectionDetected: function (downPoint, lastTimeStamp, timeStamp, point ,event) {
         if (lastTimeStamp == null) return;
         if (timeStamp - lastTimeStamp > this.doubleClickTime) return;
         if (wsTranslationPopup.isPointInPopup(downPoint.x, downPoint.y)) return;
 
         var selectedText = this.getSelectedText();
-        if (selectedText == null) return;
+        if (selectedText == null){
+            var startPos = event.target.selectionStart;
+            var endPos = event.target.selectionEnd;
+            var selText = event.target.value.substring(startPos, endPos);
+            if (selText != null){
+                selectedText={ text: selText, x: downPoint.x, y: downPoint.y };
+            }else{
+                return;
+            }
+        }
 
         this.isSelectionDetected = true;
         var request = String.Format("wsSelectionDetector.onSelectionDetected({0}, {1}, {2}, {3}, sender.tab.id);", JSON.stringify(selectedText.text), selectedText.x, selectedText.y, JSON.stringify(location.host));
@@ -150,6 +168,10 @@ var wsTranslationPopup = {
         wsTranslationPopup.placePopup();
 
         $('#wsTranslationPopup .sound img').click(function (event) {
+            var request = String.Format("wsPronunciationManager.pronuancePhrase({0});", JSON.stringify(wsTranslationPopup.phrase));
+            chrome.extension.sendRequest(request);
+        });
+        $('#wsTranslationPopup span.phrase').click(function (event) {
             var request = String.Format("wsPronunciationManager.pronuancePhrase({0});", JSON.stringify(wsTranslationPopup.phrase));
             chrome.extension.sendRequest(request);
         });
